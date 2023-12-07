@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 3000:3000
+      - 5555:5555
+    volumes:
+      - ./backend:/home/node/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 3001:5173
+    volumes:
+      - ./frontend:/home/node/app
+
+  postgres:
+    image: postgres
+    volumes:
+      -
+    environment:
+      POSTGRES_PASSWORD: "Postgres2022!"
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
+    driver: local
